@@ -9,7 +9,7 @@
 This repository demonstrates the containerization of a monolithic Java Spring Boot application utilizing a MySQL database backend. 
 
 **Infrastructure & DevOps Implementation:**
-While the base application code was originally authored by [Shubham Londhe](https://github.com/LondheShubham153), my technical focus for this repository was exclusively on the **containerization, orchestration, and database networking**. I reverse-engineered the application's environment requirements to build a highly optimized, production-ready Docker deployment.
+While the base Spring Boot application code was originally authored by [Mohamed ElSawy (mohamed0sawy)](https://github.com/mohamed0sawy/Expenses-Tracker-WebApp), my technical focus for this repository was exclusively on the **containerization, orchestration, and database networking**. I reverse-engineered the application's environment requirements to build a highly optimized, production-ready Docker deployment.
 
 ## 🏗️ Architecture & DevOps Features
 * **Multi-Stage Dockerfile:** Engineered a two-stage build process. Stage 1 utilizes Maven to compile the application and run dependencies, while Stage 2 strips out the build tools and runs the resulting `.jar` file on a lightweight `eclipse-temurin:17-jre-alpine` image to drastically reduce container size and attack surface.
@@ -41,8 +41,8 @@ Navigate to http://localhost:8080 in your web browser.
 Bash
 docker compose down
 👨‍💻 About the Developer
-Sudarshan VASHISHT 
+Sudarshan Vashisht
 
-B.Tech Computer Science and Engineering student focused on software infrastructure, deployment architecture, and backend operations.
+Developer focused on software infrastructure, deployment architecture, and backend operations.
 ## License
 This project is licensed under the MIT License.

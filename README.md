@@ -1,58 +1,48 @@
-![Language](https://img.shields.io/badge/language-Java%20-blue.svg)
-![Technologies](https://img.shields.io/badge/technologies-Spring_boot%20-green.svg)
-![Technologies](https://img.shields.io/badge/technologies-Spring_MVC%20-green.svg)
-![Technologies](https://img.shields.io/badge/technologies-Spring_Security%20-green.svg)
-![Technologies](https://img.shields.io/badge/technologies-Spring_Data_jpa%20-green.svg)
-![Technologies](https://img.shields.io/badge/technologies-Thymeleaf_&_Bootstrap%20-purple.svg)
+# 🐳 Dockerized Expenses Tracker (Spring Boot + MySQL)
 
-# Expenses-Tracker-WebApp
-## Overview
-The Expenses Tracker App is a robust financial management solution developed using cutting-edge technologies such as Spring Boot, Spring Security, and MySQL. With user authentication and authorization features, users can securely sign up, sign in, and perform CRUD operations on their expenses. The app's intuitive interface, powered by Thymeleaf and Bootstrap, ensures a seamless user experience. The filtering functionality allows users to efficiently organize and analyze their financial data. Explore the power of streamlined expense tracking and financial control with this feature-rich application.<br> (Screenshots below for more illustration)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/spring%20boot-%236DB33F.svg?style=for-the-badge&logo=springboot&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
-## Technologies Used
-- Java
-- Spring boot
-- Spring MVC
-- Spring Security
-- Spring Data (JPA)
-- MySQL
-- Thymeleaf
-- Bootstrap
+## 📌 Project Overview
+This repository demonstrates the containerization of a monolithic Java Spring Boot application utilizing a MySQL database backend. 
 
-## Features
-- **User Authentication and Authorization:** Securely sign up, sign in, and access the app with built-in authentication and authorization.
-- **CRUD Operations:** Perform essential financial tracking actions such as adding, reading, updating, and deleting expenses.
-- **Filtering:** Utilize the filtering feature to efficiently sort and view expenses based on various criteria.
+**Infrastructure & DevOps Implementation:**
+While the base application code was originally authored by [Shubham Londhe](https://github.com/LondheShubham153), my technical focus for this repository was exclusively on the **containerization, orchestration, and database networking**. I reverse-engineered the application's environment requirements to build a highly optimized, production-ready Docker deployment.
 
-## Getting Started
-1. **Clone the Repository:**
-`git clone https://github.com/your-username/expenses-tracker.git`
+## 🏗️ Architecture & DevOps Features
+* **Multi-Stage Dockerfile:** Engineered a two-stage build process. Stage 1 utilizes Maven to compile the application and run dependencies, while Stage 2 strips out the build tools and runs the resulting `.jar` file on a lightweight `eclipse-temurin:17-jre-alpine` image to drastically reduce container size and attack surface.
+* **Race Condition Mitigation:** Implemented precise `healthcheck` and `depends_on` protocols within `docker-compose.yml` to ensure the Java application waits in a pending state until the MySQL database is fully initialized and actively accepting connections.
+* **Modern JDBC Security:** Handled MySQL 8.x+ `caching_sha2_password` security protocols by configuring specific public key retrieval flags within the isolated Docker bridge network.
+* **Volume Persistence:** Configured host-mapped Docker volumes to ensure the `expenses_tracker` database survives container restarts and teardowns.
 
-2. **Configure Database:**
-Set up MySQL database and update the application.properties file with your database configuration.
+## 🚀 Local Setup & Installation
 
-3. **Build and Run:**
-Build the project using your preferred IDE or with Maven:
-`mvn clean install`.
+### Prerequisites
+* Docker & Docker Compose installed.
+* Git.
 
-4. **Run the application:**
-`java -jar target/expenses-tracker.jar`.
+### Deployment
 
-5. **Access the App:**
-Open your web browser and navigate to `http://localhost:8080`.
+**1. Clone the repository:**
+```bash
+git clone [https://github.com/sudarshanvashisht/Expenses-Tracker-WebApp.git](https://github.com/sudarshanvashisht/Expenses-Tracker-WebApp.git)
+cd Expenses-Tracker-WebApp
+2. Spin up the environment:
 
-## ScreenShots
-![Example Image](screenshots/1.png) <br>
-![Example Image](screenshots/2-2.png) <br>
-![Example Image](screenshots/3-3.png) <br>
-![Example Image](screenshots/4-4.png) <br>
-![Example Image](screenshots/5-5.png) <br>
-![Example Image](screenshots/6-6.png) <br>
-![Example Image](screenshots/7.png) <br>
-![Example Image](screenshots/8.png) <br>
+Bash
+docker compose up -d --build
+3. Access the application:
+Navigate to http://localhost:8080 in your web browser.
 
-## Contributions
-Contributions are welcome! If you find a bug or have suggestions for improvement, feel free to open an issue or create a pull request.
+4. Shut down the environment safely:
 
+Bash
+docker compose down
+👨‍💻 About the Developer
+Sudarshan VASHISHT 
+
+B.Tech Computer Science and Engineering student focused on software infrastructure, deployment architecture, and backend operations.
 ## License
 This project is licensed under the MIT License.
